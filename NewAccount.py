@@ -1,5 +1,6 @@
 from tkinter import *
 import random
+import tkinter.messagebox
 
 
 def acc_no():
@@ -145,3 +146,8 @@ class NewAccount:
             for i in newAcc:
                 save_data.write(str(i) + ';')
             save_data.write("\n")
+
+        tkinter.messagebox.showinfo("New Account", "ACCOUNT SUCCESSFULLY CREATED\nWelcome {0}\nYour Account No: "
+                                                   "{1}\n\nPLEASE\nREMEMBER YOUR PIN".format(name, accNo))
+
+        self.window.destroy()
