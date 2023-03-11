@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter as tk
 from Bank import Bank
 
+
 # TODO: Sub-Menu for CreateNewAccount
 
 class LoginScreen:
@@ -43,7 +44,8 @@ class LoginScreen:
         btn1 = tk.Button(text="1", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(1))
         btn1.place(x=120, y=352)
-        login_btn = tk.Button(text="LOGIN", font=('Arial', 16, 'bold'), height=2, width=8, bg="limegreen", command=self.validate_login)
+        login_btn = tk.Button(text="LOGIN", font=('Arial', 16, 'bold'), height=2, width=8, bg="limegreen",
+                              command=self.validate_login)
         login_btn.place(x=120, y=418)
 
         btn8 = tk.Button(text="8", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
@@ -128,5 +130,5 @@ class LoginScreen:
         else:
             print("Account doesnt exist")
 
-LoginScreen().window.mainloop()
 
+LoginScreen().window.mainloop()
