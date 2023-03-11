@@ -1,6 +1,8 @@
 from tkinter import *
 import tkinter as tk
+from tkinter import Menu
 from Bank import Bank
+from NewAccount import NewAccount
 
 
 # TODO: Sub-Menu to CreateNewAccount
@@ -18,6 +20,16 @@ class LoginScreen:
         self.window.geometry("600x600")
         self.window.title("ATM - Natalia Palej A00279259")
         self.window.resizable(False, False)
+
+        # ==== SUB MENU ==== #
+        submenu = Menu(self.window)
+        self.window.config(menu=submenu)
+        new_user = Menu(submenu)
+        # name the submenu
+        submenu.add_cascade(label="OPTIONS", menu=new_user)
+        # add option in submenu
+        new_user.add_command(
+            label="CREATE NEW ACCOUNT", command=self.new_account)
 
         label = Label(self.window, text="A T M", fg="black", font=("arial", 30, "bold"))
         label.grid(row=0, column=0, columnspan=2, pady=20, padx=250)
@@ -130,6 +142,9 @@ class LoginScreen:
                 print("Wrong PIN")
         else:
             print("Account doesnt exist")
+
+    def new_account(self):
+        NewAccount()
 
 
 LoginScreen().window.mainloop()

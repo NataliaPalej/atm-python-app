@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 
+
 # TODO: Submenu to show your account details (pop up only)
 # TODO: Submenu to edit your account details (screen with editable)
 class Bank:
@@ -11,20 +12,20 @@ class Bank:
         self.window2.title("Your Account")
         self.window2.resizable(False, False)
 
-        # get current customer
+        # === get current customer === #
         self.current_customer = customers[customer]
-
         self.customers = customers
 
         label = Label(self.window2, text="WELCOME, {0}".format(self.current_customer[1]), fg="black",
                       font=("arial", 20, "bold"))
         label.grid(row=0, column=0, pady=20, padx=150)
 
-        # ==== balance ====
+        # ==== balance ==== #
         self.label0 = Label(self.window2, text="BALANCE: ", fg="black",
                             font=("arial", 20, "bold"))
         self.label0.place(x=80, y=100)
 
+        # === update balance dynamically === #
         self.v = StringVar()
         self.v.set(self.current_customer[8])
         self.label1 = Label(self.window2, textvariable=self.v, fg="black",
