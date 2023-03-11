@@ -1,9 +1,7 @@
 from tkinter import *
 import tkinter as tk
-
-import bg
-
 from Customer import Customer
+from LoginScreen import LoginScreen
 
 
 class CustomerDetails:
@@ -88,12 +86,6 @@ class CustomerDetails:
         self.accNo_entry = Entry(self.frame)
         self.accNo_entry.insert(END, '0')
         self.accNo_entry.grid(row=7, column=1, sticky=W + E)
-
-        # checkbox injury
-        self.var_cb1 = IntVar()  # 0 unchecked, 1 checked
-        self.cb1 = Checkbutton(self.frame, text="Injury", variable=self.var_cb1, width=8, borderwidth=1,
-                               relief="solid", bg="darkgoldenrod1", fg="black")
-        self.cb1.grid(row=8, column=0, pady=3)
 
         # blank line
         self.labelBlank = Label(self.frame, bg="black")
