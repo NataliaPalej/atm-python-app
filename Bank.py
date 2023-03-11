@@ -2,9 +2,8 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 
-from Customer import Customer
-
-
+# TODO: Submenu to show your account details (pop up only)
+# TODO: Submenu to edit your account details (screen with editable)
 class Bank:
     def __init__(self, customers, customer):
         self.window2 = tk.Tk()
@@ -21,7 +20,6 @@ class Bank:
                       font=("arial", 20, "bold"))
         label.grid(row=0, column=0, pady=20, padx=150)
 
-
         # ==== balance ====
         self.label0 = Label(self.window2, text="BALANCE: ", fg="black",
                             font=("arial", 20, "bold"))
@@ -30,10 +28,8 @@ class Bank:
         self.v = StringVar()
         self.v.set(self.current_customer[8])
         self.label1 = Label(self.window2, textvariable=self.v, fg="black",
-                       font=("arial", 20, "bold"))
+                            font=("arial", 20, "bold"))
         self.label1.place(x=300, y=100)
-
-
 
         label4 = Label(self.window2, text="AMOUNT:", fg="black", font=("arial", 10, "bold"))
         label4.place(x=80, y=180)
@@ -114,13 +110,12 @@ class Bank:
         self.current_customer[8] = new_balance
         self.v.set(self.current_customer[8])
 
+    # save updated balance in the file
     def save_data(self):
-        # print each customer
         with open('customers.txt', 'w') as save_data:
             for customer in self.customers:
-                #print(customer, self.customers[customer])
+                # print(customer, self.customers[customer])
                 save_data.write(customer + ';')
-                for customer in self.customers[customer]:
-                    save_data.write(str(customer) + ';')
+                for i in self.customers[customer]:
+                    save_data.write(str(i) + ';')
                 save_data.write("\n")
-

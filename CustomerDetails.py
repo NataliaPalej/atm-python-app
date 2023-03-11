@@ -3,18 +3,11 @@ import tkinter as tk
 
 
 class CustomerDetails:
-    def __init__(self, window2, cust_list):
-        self.cust_list = cust_list
-        self.current = 0  # current team
-        self.cust_list = self.cust_list[0]  # initialize to first match
-
-        # ===== GUI ===== #
-        self.frame = tk.Frame(window2, width=600, height=600)
-        self.frame.place(x=20, y=20)
-
-        self.panel = tk.Label(self.frame)
-        self.panel.place(x=0, y=0, relwidth=1, relheight=1)
-        window2.resizable(False, False)
+    def __init__(self):
+        self.frame = tk.Tk()
+        self.frame.geometry("600x600")
+        self.frame.title("ATM - Natalia Palej A00279259")
+        self.frame.resizable(False, False)
 
         # title label
         self.label1 = Label(self.frame, text="Customer Details", fg="white", bg="black", font=("arial", 16, "bold"))
@@ -81,27 +74,12 @@ class CustomerDetails:
         self.accNo_entry.insert(END, '0')
         self.accNo_entry.grid(row=7, column=1, sticky=W + E)
 
-        # blank line
-        self.labelBlank = Label(self.frame, bg="black")
-        self.labelBlank.grid(row=11)
-
         # reset
         self.reset = Button(self.frame, text="RESET", fg="black", bg="white", font=("arial", 10, "bold"),
                             command=lambda: self.clear_data(self.current))
         self.reset.grid(row=12, column=0, columnspan=2, sticky=W + E, padx=3)
 
-        # blank line
-        self.labelBlank = Label(self.frame, bg="black")
-        self.labelBlank.grid(row=13)
-
-        # previous and next button
-        self.previous = Button(self.frame, text="Previous", fg="black", bg="darkgoldenrod1", font=("arial", 10, "bold"),
-                               command=self.previous_button)
-        self.previous.grid(row=14, column=0, sticky=W + E, pady=3, columnspan=2)
-
-        self.next_button = Button(self.frame, text="Next", fg="black", bg="dodgerblue3", font=("arial", 10, "bold"),
-                                  command=self.next_button)
-        self.next_button.grid(row=14, column=2, columnspan=3, sticky=W + E)
+        self.frame.mainloop()
 
     # Event Handling Methods
     def display(self, index):
@@ -132,12 +110,7 @@ class CustomerDetails:
         self.accNo_entry.delete(0, END)
         self.accNo_entry.insert(END, customer.get_accNo())
 
-    def next_button(self):
-        if self.current < (len(self.cust_list) - 1):
-            self.current += 1
-            self.display(self.current)
 
-    def previous_button(self):
-        if self.current > 0:
-            self.current -= 1
-            self.display(self.current)
+# TODO: SAVE AND EXIT BUTTON (OPEN ON TOP OF BANK WINDOW)
+
+CustomerDetails().frame.mainloop()

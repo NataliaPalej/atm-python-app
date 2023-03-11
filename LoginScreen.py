@@ -3,7 +3,8 @@ import tkinter as tk
 from Bank import Bank
 
 
-# TODO: Sub-Menu for CreateNewAccount
+# TODO: Sub-Menu to CreateNewAccount
+# TODO: NewScreen to add details (copy of editDetails) > random accNo generator
 
 class LoginScreen:
     def __init__(self):
