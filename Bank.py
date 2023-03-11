@@ -2,48 +2,73 @@ import tkinter as tk
 from tkinter import *
 from Customer import Customer
 
-
 class Bank:
-    def __init__(self):
-        self.window = tk.Tk()
-        self.window.geometry("600x600")
-        self.window.title("Your Account")
-        # bg = ImageTk.PhotoImage(Image.open("images/volleyball.jpg"))
-        # myBG = Label(image=bg)
-        # myBG.place(x=0, y=0, relwidth=1, relheight=1)
+    def __init__(self, customers, customer):
+        self.window2 = tk.Tk()
+        self.window2.geometry("600x800")
+        self.window2.title("Your Account")
+        self.window2.resizable(False, False)
 
-        self.window.resizable(False, False)
+        label = Label(self.window2, text="WELCOME TO YOUR ACCOUNT", fg="black", font=("arial", 20, "bold"))
+        label.grid(row=0, column=0, pady=20, padx=75)
 
-        c1 = Customer("Lilly", "Mayor", "Female", "Employed", "Athlone", "089 421 4578", "LillyMayor@gmail.com",
-                      "123456", "1234")
-        c2 = Customer("Lola", "Kennedy", "Undefined", "Student", "Roscommon", "087 421 1234", "LolaKennedy@gmail.com",
-                      "987654", "9876")
-        c3 = Customer("Mike", "Smith", "Male", "Unemployed", "Dublin", "086 123 4578", "MikeSmith@gmail.com", "456132",
-                      "6789")
+        label4 = Label(self.window2, text="AMOUNT:", fg="black", font=("arial", 10, "bold"))
+        label4.place(x=80, y=180)
+        self.amount_entry = Entry(self.window2, font="Arial 20")
+        self.amount_entry.insert(END, '')
+        self.amount_entry.place(x=160, y=180, width=300, height=40)
+        self.amount_entry.focus()
 
-        self.cust_list = [c1, c2, c3]
+        btn7 = tk.Button(self.window2, text="7", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(7))
+        btn7.place(x=120, y=227)
+        btn4 = tk.Button(self.window2, text="4", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(4))
+        btn4.place(x=120, y=290)
+        btn1 = tk.Button(self.window2, text="1", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(1))
+        btn1.place(x=120, y=352)
+        login_btn = tk.Button(self.window2, text="LOGIN", font=('Arial', 16, 'bold'), height=2, width=8, bg="limegreen")
+        login_btn.place(x=120, y=418)
 
-        # customer details button
-        cust_details = tk.Button(text="Customer Details", font=('Arial', 16, 'bold'), height=2, width=15, takefocus=1,
-                                 command=self.details_screen)
-        cust_details.place(x=200, y=100)
+        btn8 = tk.Button(self.window2, text="8", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(8))
+        btn8.place(x=235, y=227)
+        btn5 = tk.Button(self.window2, text="5", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(5))
+        btn5.place(x=235, y=290)
+        btn2 = tk.Button(self.window2, text="2", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(2))
+        btn2.place(x=235, y=352)
+        btn0 = tk.Button(self.window2, text="0", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(0))
+        btn0.place(x=235, y=418)
+
+        btn9 = tk.Button(self.window2, text="9", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(9))
+        btn9.place(x=350, y=227)
+        btn6 = tk.Button(self.window2, text="6", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(6))
+        btn6.place(x=350, y=290)
+        btn3 = tk.Button(self.window2, text="3", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
+                         command=lambda: self.button_handler(3))
+        btn3.place(x=350, y=352)
+        clearbtn = tk.Button(self.window2, text="CANCEL", font=('Arial', 16, 'bold'), height=2, width=8, bg="red", command=self.clear)
+        clearbtn.place(x=350, y=418)
 
         # exit button
-        exit_button = tk.Button(text="Exit", width=15, font=('Arial', 16, 'bold'), height=2, command=self.exit_app,
-                                bg="gray", fg="black")
-        exit_button.place(x=200, y=450)
+        exit_btn = tk.Button(self.window2, text="EXIT", width=15, font=('Arial', 16, 'bold'), height=2, bg="gray", fg="black",
+                             command=self.exit)
+        exit_btn.place(x=15, y=520)
 
-    # details screen
-    def details_screen(self):
-        window2 = Toplevel(self.window, bg="grey85")
-        window2.geometry("600x500")
-        window2.title("Customer Details")
-        detail_screen = CustomerDetails(window2, self.cust_list)
-        detail_screen.display(0)
+        self.window2.mainloop()
 
-        button = Button(window2, text="Close", width=100, height=2, command=window2.destroy, font=("arial", 10, "bold"))
-        button.pack(side=tk.BOTTOM)
-
-    # exit app
-    def exit_app(self):
+    # ===== Methods ===== #
+    def exit(self):
         exit()
+
+    def clear(self):
+        self.amount_entry.delete(0, END)
+        self.amount_entry.insert(END, "")
+    def button_handler(self, number):
+        self.amount_entry.insert(END, number)

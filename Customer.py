@@ -1,6 +1,6 @@
 class Customer:
     # New customer constructor
-    def __init__(self, name, surname, sex, occupation, address, phone, email, accNo, accPIN):
+    def __init__(self, accNo, accPIN, name, surname, sex, occupation, address, phone, email):
         self.__name = name
         self.__surname = surname
         self.__sex = sex

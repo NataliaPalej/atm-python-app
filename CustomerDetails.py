@@ -1,24 +1,18 @@
 from tkinter import *
 import tkinter as tk
-from Customer import Customer
-from LoginScreen import LoginScreen
 
 
 class CustomerDetails:
-    def __init__(self, window2, cus_list):
-        self.cus_list = cus_list
+    def __init__(self, window2, cust_list):
+        self.cust_list = cust_list
         self.current = 0  # current team
-        self.cus_list = self.cus_list[0]  # initialize to first match
+        self.cust_list = self.cust_list[0]  # initialize to first match
 
         # ===== GUI ===== #
-        self.frame = tk.Frame(window2, width=635, height=590)
-
+        self.frame = tk.Frame(window2, width=600, height=600)
         self.frame.place(x=20, y=20)
 
-        # bg = ImageTk.PhotoImage(Image.open("images/volleyball.jpg"))
-
-        self.panel = tk.Label(self.frame, image=bg)
-        self.panel.image = bg
+        self.panel = tk.Label(self.frame)
         self.panel.place(x=0, y=0, relwidth=1, relheight=1)
         window2.resizable(False, False)
 
