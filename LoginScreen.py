@@ -5,14 +5,12 @@ from Bank import Bank
 # TODO: Sub-Menu for CreateNewAccount
 
 class LoginScreen:
-    def bank_screen(self):
-        window2 = Toplevel(self.window, bg="pink")
-        window2.geometry("570x500")
-        window2.title("Bank Details")
-        Bank()
-        self.window.destroy()
-
     def __init__(self):
+        # initialize empty dictionary to store customer data from file
+        self.customers = {}
+        # read data from file
+        self.read_data()
+
         # ===== GUI ===== #
         self.window = tk.Tk()
         self.window.geometry("600x600")
@@ -21,8 +19,6 @@ class LoginScreen:
 
         label = Label(self.window, text="A T M", fg="black", font=("arial", 30, "bold"))
         label.grid(row=0, column=0, columnspan=2, pady=20, padx=250)
-        # label2 = Label(window, text="Automated Teller Machine", fg="black", font=("arial", 15, "bold"))
-        # label2.grid(row=1, column=0, columnspan=2, padx=180)
 
         label3 = Label(self.window, text="ACC:", fg="black", font=("arial", 20, "bold"), )
         label3.place(x=80, y=120)
@@ -47,7 +43,7 @@ class LoginScreen:
         btn1 = tk.Button(text="1", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(1))
         btn1.place(x=120, y=352)
-        login_btn = tk.Button(text="LOGIN", font=('Arial', 16, 'bold'), height=2, width=8, bg="limegreen", command=self.bank_screen)
+        login_btn = tk.Button(text="LOGIN", font=('Arial', 16, 'bold'), height=2, width=8, bg="limegreen", command=self.validate_login)
         login_btn.place(x=120, y=418)
 
         btn8 = tk.Button(text="8", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
@@ -106,5 +102,31 @@ class LoginScreen:
         else:
             print("Nothing Selected")
 
+    def read_data(self):
+        with open("customers.txt") as f:
+            for line in f:
+                customer_data = line.strip().split(";")
+                # insert customer data from file to dictionary by key:value key being accNo
+                self.customers[customer_data[0]] = customer_data[1:]
+        # print each customer
+        for customer in self.customers:
+            print(customer, self.customers[customer])
+
+    def validate_login(self):
+        account = self.accNo_entry.get()
+        pin = self.PIN_entry.get()
+
+        # check if account exists in dictionary
+        if account in self.customers:
+            # check if account and pin matches
+            if self.customers[account][0] == pin:
+                self.window.destroy()
+                Bank(self.customers, account)
+                print("Valid")
+            else:
+                print("Wrong PIN")
+        else:
+            print("Account doesnt exist")
 
 LoginScreen().window.mainloop()
+
