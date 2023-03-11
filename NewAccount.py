@@ -2,6 +2,7 @@ from tkinter import *
 import random
 import tkinter.messagebox
 
+
 def acc_no():
     accNo = random.randint(100000, 999999)
     return accNo
@@ -148,6 +149,5 @@ class NewAccount:
 
         tkinter.messagebox.showinfo("New Account", "ACCOUNT SUCCESSFULLY CREATED\nWelcome {0}\nYour Account No: "
                                                    "{1}\n\nPLEASE\nREMEMBER YOUR PIN".format(name, accNo))
-
 
         self.window.destroy()
