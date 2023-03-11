@@ -5,9 +5,6 @@ from Bank import Bank
 from NewAccount import NewAccount
 
 
-# TODO: Sub-Menu to CreateNewAccount
-# TODO: NewScreen to add details (copy of editDetails) > random accNo generator
-
 class LoginScreen:
     def __init__(self):
         # initialize empty dictionary to store customer data from file
@@ -128,6 +125,8 @@ class LoginScreen:
             print(customer, self.customers[customer])
 
     def validate_login(self):
+        # read the file again to make sure new account is accessible
+        self.read_data()
         account = self.accNo_entry.get()
         pin = self.PIN_entry.get()
 
