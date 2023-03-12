@@ -100,34 +100,27 @@ class NewAccount:
         self.window.mainloop()
 
     def clear(self):
-        self.name_entry.delete(0, END)
-        self.name_entry.insert(END, '')
-        self.surname_entry.delete(0, END)
-        self.surname_entry.insert(END, '')
+        # List of entry fields
+        entries = [self.name_entry, self.surname_entry, self.occupation_entry, self.address_entry, self.phone_entry,
+                   self.email_entry, self.pin_entry]
+        # For every entry field, clear its value
+        for i in entries:
+            i.delete(0, END)
+            i.insert(END, '')
         self.radio1.select()
-        self.occupation_entry.delete(0, END)
-        self.occupation_entry.insert(END, '')
-        self.address_entry.delete(0, END)
-        self.address_entry.insert(END, '')
-        self.phone_entry.delete(0, END)
-        self.phone_entry.insert(END, '')
-        self.email_entry.delete(0, END)
-        self.email_entry.insert(END, '')
 
     # radiobutton handler
     def gender_choice(self):
-        choice = self.radio.get()
-        output = ""
-        if choice == "Male":
-            output = "Male"
-        elif choice == "Female":
-            output = "Female"
-        elif choice == "Undefined":
-            output = "Undefined"
-        return output
+        return self.radio.get()
 
-    # save new details in the file
+    # Save new details in the file
     def save_data(self):
+        # Check if PIN is 4 digit long
+        pin = self.pin_entry.get()
+        if not (pin.isdigit() and len(pin) == 4):
+            tkinter.messagebox.showerror("Invalid PIN", "PIN must contain 4 digits.")
+            return
+
         accNo = acc_no()
         pin = self.pin_entry.get()
         name = self.name_entry.get()
