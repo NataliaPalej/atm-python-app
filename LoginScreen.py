@@ -5,6 +5,14 @@ from Bank import Bank
 from NewAccount import NewAccount
 
 
+def exit_app():
+    exit()
+
+
+def new_account():
+    NewAccount()
+
+
 class LoginScreen:
     def __init__(self):
         # initialize empty dictionary to store customer data from file
@@ -26,7 +34,7 @@ class LoginScreen:
         submenu.add_cascade(label="OPTIONS", menu=new_user)
         # add option in submenu
         new_user.add_command(
-            label="CREATE NEW ACCOUNT", command=self.new_account)
+            label="CREATE NEW ACCOUNT", command=new_account)
 
         label = Label(self.window, text="A T M", fg="black", font=("arial", 30, "bold"))
         label.grid(row=0, column=0, columnspan=2, pady=20, padx=250)
@@ -85,22 +93,23 @@ class LoginScreen:
 
         # exit button
         exit_btn = tk.Button(text="EXIT", width=15, font=('Arial', 16, 'bold'), height=2, bg="gray", fg="black",
-                             command=self.exit_app)
+                             command=exit_app)
         exit_btn.place(x=15, y=520)
 
     # ===== Methods ===== #
-    def exit_app(self):
-        exit()
-
     def clear(self):
         entry_focused = self.window.focus_get()
         entry_focused = str(entry_focused)
         if entry_focused == ".!entry":
+            current_acc = self.accNo_entry.get()
+            new_acc = current_acc[:-1]
             self.accNo_entry.delete(0, END)
-            self.accNo_entry.insert(END, "")
+            self.accNo_entry.insert(END, new_acc)
         elif entry_focused == ".!entry2":
+            current_pin = self.PIN_entry.get()
+            new_pin = current_pin[:-1]
             self.PIN_entry.delete(0, END)
-            self.PIN_entry.insert(END, "")
+            self.PIN_entry.insert(END, new_pin)
         else:
             print("Nothing Selected")
 
@@ -141,9 +150,6 @@ class LoginScreen:
                 print("Wrong PIN")
         else:
             print("Account doesnt exist")
-
-    def new_account(self):
-        NewAccount()
 
 
 LoginScreen().window.mainloop()
