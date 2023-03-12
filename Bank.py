@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 from CustomerDetails import CustomerDetails
+from tkinter.ttk import Combobox
 
 
 class Bank:
@@ -32,14 +33,21 @@ class Bank:
 
         self.label0 = Label(self.window2, text="BALANCE:       €", fg="black",
                             font=("arial", 20, "bold"))
-        self.label0.place(x=80, y=100)
+        self.label0.place(x=80, y=80)
 
         # === Update balance dynamically === #
         self.v = StringVar()
         self.v.set(self.current_customer[8])
         self.label1 = Label(self.window2, textvariable=self.v, fg="black",
                             font=("arial", 20, "bold"))
-        self.label1.place(x=300, y=100)
+        self.label1.place(x=300, y=80)
+
+        # === Create a dropdown to select customer to transfer money to === #
+        label2 = Label(self.window2, text="TRANSFER TO:", fg="black", font=("arial", 15, "bold"))
+        label2.place(x=60, y=123)
+        self.customer_dropdown = Combobox(self.window2, font=("Arial", 15), values="1",
+                                          state="readonly")
+        self.customer_dropdown.place(x=230, y=120, width=250, height=40)
 
         label4 = Label(self.window2, text="AMOUNT:", fg="black", font=("arial", 15, "bold"))
         label4.place(x=60, y=185)
@@ -95,10 +103,15 @@ class Bank:
                             bg="yellow", command=self.deposit)
         deposit.place(x=405, y=293)
 
-        empty3 = tk.Button(self.window2, text=" ", font=('Arial', 16, 'bold'), height=2, width=10,
-                            bg="lightblue")
-        empty3.place(x=405, y=359)
-        empty3.config(state="disabled")
+        #empty3 = tk.Button(self.window2, text=" ", font=('Arial', 16, 'bold'), height=2, width=10,
+        #                    bg="lightblue")
+        #empty3.place(x=405, y=359)
+        #empty3.config(state="disabled")
+
+        # === Create a button to transfer funds to selected customer === #
+        transfer_btn = tk.Button(self.window2, text="TRANSFER", font=('Arial', 16, 'bold'), height=2, width=10,
+                                 bg="lightblue", command=self.transfer_funds)
+        transfer_btn.place(x=405, y=359)
 
         clearbtn = tk.Button(self.window2, text="CANCEL", font=('Arial', 16, 'bold'), height=2, width=10, bg="red",
                              command=self.clear)
@@ -165,7 +178,7 @@ class Bank:
         except ValueError:
             # Do nothing if user did not enter any amount
             return
-        
+
         balance = int(self.current_customer[8])
         if amt > 10000:
             formatted_amt = "{:,}".format(amt)
@@ -175,6 +188,13 @@ class Bank:
             new_balance = balance + amt
             self.current_customer[8] = new_balance
             self.v.set(str(new_balance))
+
+    def transfer_funds(self):
+        amount = self.amount_entry.get()
+        to_customer_name = self.customer_dropdown.get()
+
+        # === TODO: Find the customer details for the selected customer === #
+        # === TODO: Update the balances for both customers === #
 
     # Save updated balance in the file
     def save_data(self):
