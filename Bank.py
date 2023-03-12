@@ -132,7 +132,12 @@ class Bank:
         self.amount_entry.insert(END, number)
 
     def withdraw(self):
-        amt = int(self.amount_entry.get())
+        try:
+            amt = int(self.amount_entry.get())
+        except ValueError:
+            # Do nothing if user did not enter any amount
+            return
+
         balance = int(self.current_customer[8])
         new_balance = balance - amt
         if new_balance < -1000:
@@ -155,7 +160,12 @@ class Bank:
             self.v.set(str(new_balance))
 
     def deposit(self):
-        amt = int(self.amount_entry.get())
+        try:
+            amt = int(self.amount_entry.get())
+        except ValueError:
+            # Do nothing if user did not enter any amount
+            return
+        
         balance = int(self.current_customer[8])
         if amt > 10000:
             formatted_amt = "{:,}".format(amt)
