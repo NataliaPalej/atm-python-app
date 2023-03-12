@@ -1,10 +1,9 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
+from CustomerDetails import CustomerDetails
 
 
-# TODO: Submenu to show your account details (pop up only)
-# TODO: Submenu to edit your account details (screen with editable)
 class Bank:
     def __init__(self, customers, customer):
         self.window2 = tk.Tk()
@@ -12,16 +11,27 @@ class Bank:
         self.window2.title("Your Account")
         self.window2.resizable(False, False)
 
+        # ==== SUB MENU ==== #
+        submenu = Menu(self.window2)
+        self.window2.config(menu=submenu)
+        edit_details = Menu(submenu)
+        # name the submenu
+        submenu.add_cascade(label="OPTIONS", menu=edit_details)
+        # add option in submenu
+        edit_details.add_command(
+            label="EDIT DETAILS", command=self.edit_details)
+
         # === get current customer === #
         self.current_customer = customers[customer]
         self.customers = customers
+        self.customer = customer
 
         label = Label(self.window2, text="WELCOME, {0}".format(self.current_customer[1]), fg="black",
                       font=("arial", 20, "bold"))
         label.grid(row=0, column=0, pady=20, padx=150)
 
         # ==== balance ==== #
-        self.label0 = Label(self.window2, text="BALANCE: ", fg="black",
+        self.label0 = Label(self.window2, text="BALANCE:       €", fg="black",
                             font=("arial", 20, "bold"))
         self.label0.place(x=80, y=100)
 
@@ -32,51 +42,68 @@ class Bank:
                             font=("arial", 20, "bold"))
         self.label1.place(x=300, y=100)
 
-        label4 = Label(self.window2, text="AMOUNT:", fg="black", font=("arial", 10, "bold"))
-        label4.place(x=80, y=180)
+        label4 = Label(self.window2, text="AMOUNT:", fg="black", font=("arial", 15, "bold"))
+        label4.place(x=60, y=185)
         self.amount_entry = Entry(self.window2, font="Arial 20")
         self.amount_entry.insert(END, '')
-        self.amount_entry.place(x=160, y=180, width=300, height=40)
+        self.amount_entry.place(x=164, y=180, width=380, height=40)
         self.amount_entry.focus()
 
         btn7 = tk.Button(self.window2, text="7", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(7))
-        btn7.place(x=120, y=227)
+        btn7.place(x=60, y=227)
         btn4 = tk.Button(self.window2, text="4", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(4))
-        btn4.place(x=120, y=290)
+        btn4.place(x=60, y=293)
         btn1 = tk.Button(self.window2, text="1", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(1))
-        btn1.place(x=120, y=352)
-        login_btn = tk.Button(self.window2, text="WITHDRAW", font=('Arial', 16, 'bold'), height=2, width=8,
-                              bg="limegreen", command=self.withdraw)
-        login_btn.place(x=120, y=418)
+        btn1.place(x=60, y=359)
+        empty = tk.Button(self.window2, text=" ", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue")
+        empty.place(x=60, y=425)
+        empty.config(state="disabled")
 
         btn8 = tk.Button(self.window2, text="8", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(8))
-        btn8.place(x=235, y=227)
+        btn8.place(x=175, y=227)
         btn5 = tk.Button(self.window2, text="5", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(5))
-        btn5.place(x=235, y=290)
+        btn5.place(x=175, y=293)
         btn2 = tk.Button(self.window2, text="2", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(2))
-        btn2.place(x=235, y=352)
+        btn2.place(x=175, y=359)
         btn0 = tk.Button(self.window2, text="0", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(0))
-        btn0.place(x=235, y=418)
+        btn0.place(x=175, y=425)
 
         btn9 = tk.Button(self.window2, text="9", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(9))
-        btn9.place(x=350, y=227)
+        btn9.place(x=290, y=227)
         btn6 = tk.Button(self.window2, text="6", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(6))
-        btn6.place(x=350, y=290)
+        btn6.place(x=290, y=293)
         btn3 = tk.Button(self.window2, text="3", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue",
                          command=lambda: self.button_handler(3))
-        btn3.place(x=350, y=352)
-        clearbtn = tk.Button(self.window2, text="CANCEL", font=('Arial', 16, 'bold'), height=2, width=8, bg="red",
+        btn3.place(x=290, y=359)
+        empty2 = tk.Button(self.window2, text=" ", font=('Arial', 16, 'bold'), height=2, width=8, bg="lightblue")
+        empty2.place(x=290, y=425)
+        empty2.config(state="disabled")
+
+        withdraw = tk.Button(self.window2, text="WITHDRAW", font=('Arial', 16, 'bold'), height=2, width=10,
+                             bg="limegreen", command=self.withdraw)
+        withdraw.place(x=405, y=227)
+
+        deposit = tk.Button(self.window2, text="DEPOSIT", font=('Arial', 16, 'bold'), height=2, width=10,
+                            bg="yellow", command=self.deposit)
+        deposit.place(x=405, y=293)
+
+        empty3 = tk.Button(self.window2, text=" ", font=('Arial', 16, 'bold'), height=2, width=10,
+                            bg="lightblue")
+        empty3.place(x=405, y=359)
+        empty3.config(state="disabled")
+
+        clearbtn = tk.Button(self.window2, text="CANCEL", font=('Arial', 16, 'bold'), height=2, width=10, bg="red",
                              command=self.clear)
-        clearbtn.place(x=350, y=418)
+        clearbtn.place(x=405, y=425)
 
         # exit button
         exit_btn = tk.Button(self.window2, text="LOGOUT", width=15, font=('Arial', 16, 'bold'), height=2, bg="gray",
@@ -98,18 +125,48 @@ class Bank:
             self.window2.destroy()
 
     def clear(self):
+        current_amt = self.amount_entry.get()
+        new_amt = current_amt[:-1]
         self.amount_entry.delete(0, END)
-        self.amount_entry.insert(END, "")
+        self.amount_entry.insert(END, new_amt)
 
     def button_handler(self, number):
         self.amount_entry.insert(END, number)
 
     def withdraw(self):
-        amt = self.amount_entry.get()
-        balance = self.current_customer[8]
-        new_balance = int(balance) - int(amt)
-        self.current_customer[8] = new_balance
-        self.v.set(self.current_customer[8])
+        amt = int(self.amount_entry.get())
+        balance = int(self.current_customer[8])
+        new_balance = balance - amt
+        if new_balance < -1000:
+            messagebox.showwarning("WARNING", "Your balance is €{0}! Maximum dept is -€1,000".format(balance))
+        elif new_balance < 0:
+            answer = messagebox.askquestion("WARNING", "Your balance will be negative (€{0}), "
+                                                       "are you sure you want to proceed?".format(new_balance))
+            if answer == 'yes':
+                self.current_customer[8] = new_balance
+                self.v.set(str(new_balance))
+                self.amount_entry.delete(0, END)
+                self.amount_entry.insert(END, "")
+            else:
+                # Withdrawal cancelled, balance remains unchanged
+                self.amount_entry.delete(0, END)
+                self.amount_entry.insert(END, "")
+                pass
+        else:
+            self.current_customer[8] = new_balance
+            self.v.set(str(new_balance))
+
+    def deposit(self):
+        amt = int(self.amount_entry.get())
+        balance = int(self.current_customer[8])
+        if amt > 10000:
+            formatted_amt = "{:,}".format(amt)
+            messagebox.showwarning("WARNING", "You cannot deposit more than €10,000 at a time.\n"
+                                              "You are trying to deposit €{0}".format(formatted_amt))
+        else:
+            new_balance = balance + amt
+            self.current_customer[8] = new_balance
+            self.v.set(str(new_balance))
 
     # save updated balance in the file
     def save_data(self):
@@ -117,6 +174,13 @@ class Bank:
             for customer in self.customers:
                 # print(customer, self.customers[customer])
                 save_data.write(customer + ';')
-                for i in self.customers[customer]:
-                    save_data.write(str(i) + ';')
+                # enumerate gets index and value of each element in self.cust[cust]
+                for i, data in enumerate(self.customers[customer]):
+                    save_data.write(str(data))
+                    # condition that adds ";" until its last element in the list
+                    if i != len(self.customers[customer]) - 1:
+                        save_data.write(';')
                 save_data.write("\n")
+
+    def edit_details(self):
+        CustomerDetails(self.customers, self.customer)
