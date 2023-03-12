@@ -1,6 +1,4 @@
-1;1;Lilly;Mayor;Undefined;Employed;Athlone;0894214578;LillyMayor@gmail.com;-250;
-987654;9876;Lola;Kennedy;Undefined;Student;Roscommon;0874211234;LolaKennedy@gmail.com;90000;
-456132;6789;Mike;Smith;Male;Unemployed;Dublin;0861234578;MikeSmith@gmail.com;80000;
-877900;9876;Nicholas;Murphy;Male;Software Engineer;Athlone, Ireland;08795134598;NickMurphy@gmail.com;0;
-858758;1548;Karen;O'Connor;Undefined;Teacher;Boyle;087 954 5621;KarenO@hotmail.co.uk;0;
-403923;7575;Lidia;Poland;Female;Sales Assistant;Muszyna;08796571234;LidiaPoland@hotmail.com;0;937364;1094;Robert;Paper;Male;Taxi Driver;Hudson Bay;0869874567;RobertPaper@gmail.com;0;
+1;1;Lilly;Lilusia;Female;CEO;Athlone;0894214578;LillyMayor@gmail.com;600;
+987654;9876;Lola;Kennedy;Undefined;Student;Roscommon;0874211234;LolaKennedy@gmail.com;90000;;
+456132;6789;Mike;Smith;Male;Unemployed;Dublin;0861234578;MikeSmith@gmail.com;80000;;
+877900;9876;Nicholas;Murphy;Male;Software Engineer;Athlone, Ireland;08795134598;NickMurphy@gmail.com;0;;

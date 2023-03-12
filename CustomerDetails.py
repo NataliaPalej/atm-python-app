@@ -130,7 +130,15 @@ class CustomerDetails:
             self.radio3.select()
 
     def gender_choice(self):
-        return self.radio.get()
+        choice = self.radio.get()
+        output = ""
+        if choice == "Male":
+            output = "Male"
+        elif choice == "Female":
+            output = "Female"
+        elif choice == "Undefined":
+            output = "Undefined"
+        return output
 
     # save new details in the file
     def save_data(self):
@@ -143,9 +151,9 @@ class CustomerDetails:
         address = self.address_entry.get()
         phone = self.phone_entry.get()
         email = self.email_entry.get()
-        balance = self.current_customer[9]
+        balance = self.current_customer[8]
 
-        updatedAccount = [accNo, pin, name, surname, gender, occupation, address, phone, email, balance]
+        updatedAccount = [pin, name, surname, gender, occupation, address, phone, email, balance]
 
         self.customers[accNo] = updatedAccount
         with open('customers.txt', 'w') as save_data:
