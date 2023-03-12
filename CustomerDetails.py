@@ -130,15 +130,7 @@ class CustomerDetails:
             self.radio3.select()
 
     def gender_choice(self):
-        choice = self.radio.get()
-        output = ""
-        if choice == "Male":
-            output = "Male"
-        elif choice == "Female":
-            output = "Female"
-        elif choice == "Undefined":
-            output = "Undefined"
-        return output
+        return self.radio.get()
 
     # save new details in the file
     def save_data(self):
