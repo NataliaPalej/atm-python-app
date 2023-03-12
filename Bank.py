@@ -15,13 +15,13 @@ class Bank:
         submenu = Menu(self.window2)
         self.window2.config(menu=submenu)
         edit_details = Menu(submenu)
-        # name the submenu
+        # Name the submenu
         submenu.add_cascade(label="OPTIONS", menu=edit_details)
-        # add option in submenu
+        # Add option in submenu
         edit_details.add_command(
             label="EDIT DETAILS", command=self.edit_details)
 
-        # === get current customer === #
+        # === Get current customer === #
         self.current_customer = customers[customer]
         self.customers = customers
         self.customer = customer
@@ -30,12 +30,11 @@ class Bank:
                       font=("arial", 20, "bold"))
         label.grid(row=0, column=0, pady=20, padx=150)
 
-        # ==== balance ==== #
         self.label0 = Label(self.window2, text="BALANCE:       €", fg="black",
                             font=("arial", 20, "bold"))
         self.label0.place(x=80, y=100)
 
-        # === update balance dynamically === #
+        # === Update balance dynamically === #
         self.v = StringVar()
         self.v.set(self.current_customer[8])
         self.label1 = Label(self.window2, textvariable=self.v, fg="black",
@@ -105,7 +104,6 @@ class Bank:
                              command=self.clear)
         clearbtn.place(x=405, y=425)
 
-        # exit button
         exit_btn = tk.Button(self.window2, text="LOGOUT", width=15, font=('Arial', 16, 'bold'), height=2, bg="gray",
                              fg="black",
                              command=self.exit)
@@ -168,16 +166,15 @@ class Bank:
             self.current_customer[8] = new_balance
             self.v.set(str(new_balance))
 
-    # save updated balance in the file
+    # Save updated balance in the file
     def save_data(self):
         with open('customers.txt', 'w') as save_data:
             for customer in self.customers:
-                # print(customer, self.customers[customer])
                 save_data.write(customer + ';')
-                # enumerate gets index and value of each element in self.cust[cust]
+                # Enumerate gets index and value of each element in self.cust[cust]
                 for i, data in enumerate(self.customers[customer]):
                     save_data.write(str(data))
-                    # condition that adds ";" until its last element in the list
+                    # Condition that adds ";" until its last element in the list
                     if i != len(self.customers[customer]) - 1:
                         save_data.write(';')
                 save_data.write("\n")
