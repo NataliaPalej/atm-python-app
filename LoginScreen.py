@@ -99,17 +99,14 @@ class LoginScreen:
     # ===== Methods ===== #
     def clear(self):
         entry_focused = self.window.focus_get()
-        entry_focused = str(entry_focused)
-        if entry_focused == ".!entry":
+        if entry_focused == self.accNo_entry:
             current_acc = self.accNo_entry.get()
-            new_acc = current_acc[:-1]
             self.accNo_entry.delete(0, END)
-            self.accNo_entry.insert(END, new_acc)
-        elif entry_focused == ".!entry2":
+            self.accNo_entry.insert(END, current_acc[:-1])
+        elif entry_focused == self.PIN_entry:
             current_pin = self.PIN_entry.get()
-            new_pin = current_pin[:-1]
             self.PIN_entry.delete(0, END)
-            self.PIN_entry.insert(END, new_pin)
+            self.PIN_entry.insert(END, current_pin[:-1])
         else:
             print("Nothing Selected")
 
