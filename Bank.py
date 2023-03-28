@@ -254,17 +254,24 @@ class Bank:
         new_window.geometry("400x400")
         new_window.configure(bg="#fce8d5")
 
-        message_label1 = tk.Label(new_window, text="Max deposit amount €10,000 at a time", font=("Helvetica", 16), bg="#fce8d5")
-        message_label1.pack(pady=20)
+        frame = tk.Frame(new_window, bg="#fce8d5")
+        frame.pack(fill="both", expand=True, padx=20, pady=20)
 
-        message_label2 = tk.Label(new_window, text="Unlimited fund transfer to other users", font=("Helvetica", 16),
-                                  bg="#fce8d5")
-        message_label2.pack(pady=21)
+        message_label1 = tk.Label(frame, text="Max deposit amount €10,000 at a time", font=("Helvetica", 16),
+                                  bg="#fce8d5", fg="grey15")
+        message_label1.pack(pady=10)
 
-        message_label3 = tk.Label(new_window, text="Max dept amount -€1,000", font=("Helvetica", 16), bg="#fce8d5")
-        message_label3.pack(pady=22)
+        message_label2 = tk.Label(frame, text="Unlimited fund transfer to other users", font=("Helvetica", 16),
+                                  bg="#fce8d5", fg="grey15")
+        message_label2.pack(pady=10)
 
-        ok_button = tk.Button(new_window, text="OK", font=("Helvetica", 14), bg="#ffdab9", command=new_window.destroy)
-        ok_button.pack(pady=20)
+        message_label3 = tk.Label(frame, text="Max dept amount -€1,000", font=("Helvetica", 16), bg="#fce8d5",
+                                  fg="grey15")
+        message_label3.pack(pady=10)
+
+        ok_button = tk.Button(frame, text="OK", font=("Helvetica", 14), bg="#4caf50", fg="#fff",
+                              command=new_window.destroy)
+        ok_button.pack(pady=20, side="bottom")
 
         new_window.mainloop()
+
