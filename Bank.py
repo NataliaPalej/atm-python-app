@@ -52,7 +52,7 @@ class Bank:
         # === Create a dropdown to select customer to transfer money to === #
         label2 = Label(self.window2, text="TRANSFER TO:", fg="black", font=("arial", 15, "bold"))
         label2.place(x=60, y=123)
-        self.customer_dropdown = Combobox(self.window2, font=("Arial", 15), values="1",
+        self.customer_dropdown = Combobox(self.window2, font=("Arial", 15), values=customers_list,
                                           state="readonly")
         self.customer_dropdown.place(x=230, y=120, width=250, height=40)
 
@@ -198,10 +198,7 @@ class Bank:
 
     def transfer_funds(self):
         amount = self.amount_entry.get()
-        to_customer_name = self.customer_dropdown.get()
-
-        # === TODO: Find the customer details for the selected customer === #
-        # === TODO: Update the balances for both customers === #
+        to_customer = self.customer_dropdown.get()
 
     # Save updated balance in the file
     def save_data(self):
