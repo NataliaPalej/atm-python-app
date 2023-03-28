@@ -32,7 +32,6 @@ class Bank:
         for key, value in customers.items():
             if value != self.current_customer:
                 customers_list.append(value[1:3])
-        print("Customers list: ", customers_list)
 
         label = Label(self.window2, text="WELCOME, {0}".format(self.current_customer[1]), fg="black",
                       font=("arial", 20, "bold"))
@@ -197,8 +196,31 @@ class Bank:
             self.v.set(str(new_balance))
 
     def transfer_funds(self):
-        amount = self.amount_entry.get()
-        to_customer = self.customer_dropdown.get()
+        amt = int(self.amount_entry.get())
+
+        # Get the selected customer's details
+        selected_customer = self.customer_dropdown.get()
+        selected_customer_balance = 0
+
+        if self.customer == selected_customer:
+            selected_customer_balance = int(self.customer[8])
+
+        if amt > int(self.current_customer[8]):
+            messagebox.showerror("Insufficient balance", "You have insufficient balance.")
+        elif amt <= 0:
+            messagebox.showerror("Invalid amount", "Please enter a valid amount.")
+        else:
+            # Update balances
+            selected_customer_balance += amt
+            self.current_customer[8] = str(int(self.current_customer[8]) - amt)
+            self.v.set(self.current_customer[8])
+            # Show success message
+            messagebox.showinfo("Success", "Funds transferred successfully.")
+        print("You transferred {0}, from {1} to {2}".format(amt, self.current_customer[1:3], selected_customer))
+
+
+
+
 
     # Save updated balance in the file
     def save_data(self):

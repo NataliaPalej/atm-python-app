@@ -1,4 +1,4 @@
-1;1;Lilly;Lilusia;Female;CEO;Athlone;0894214578;LillyMayor@gmail.com;-199
+1;1;Lilly;Lilusia;Female;CEO;Athlone;0894214578;LillyMayor@gmail.com;295
 987654;9876;Lola;Kennedy;Undefined;Student;Roscommon;0874211234;LolaKennedy@gmail.com;90000;;
 456132;6789;Mike;Smith;Male;Unemployed;Dublin;0861234578;MikeSmith@gmail.com;80000;;
 877900;9876;Nicholas;Murphy;Male;Software Engineer;Athlone, Ireland;08795134598;NickMurphy@gmail.com;0;;
