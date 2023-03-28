@@ -28,10 +28,11 @@ class Bank:
         self.customer = customer
 
         # === Get other customers === #
-        customers_list = []
+        self.customers_list = {}
         for key, value in customers.items():
             if value != self.current_customer:
-                customers_list.append(value[1:3])
+                self.customers_list[key] = "{0} {1}".format(value[1], value[2])
+        print(self.customers_list)
 
         label = Label(self.window2, text="WELCOME, {0}".format(self.current_customer[1]), fg="black",
                       font=("arial", 20, "bold"))
@@ -51,7 +52,7 @@ class Bank:
         # === Create a dropdown to select customer to transfer money to === #
         label2 = Label(self.window2, text="TRANSFER TO:", fg="black", font=("arial", 15, "bold"))
         label2.place(x=60, y=123)
-        self.customer_dropdown = Combobox(self.window2, font=("Arial", 15), values=customers_list,
+        self.customer_dropdown = Combobox(self.window2, font=("Arial", 15), values=list(self.customers_list.values()),
                                           state="readonly")
         self.customer_dropdown.place(x=230, y=120, width=250, height=40)
 
@@ -109,10 +110,10 @@ class Bank:
                             bg="yellow", command=self.deposit)
         deposit.place(x=405, y=293)
 
-        #empty3 = tk.Button(self.window2, text=" ", font=('Arial', 16, 'bold'), height=2, width=10,
+        # empty3 = tk.Button(self.window2, text=" ", font=('Arial', 16, 'bold'), height=2, width=10,
         #                    bg="lightblue")
-        #empty3.place(x=405, y=359)
-        #empty3.config(state="disabled")
+        # empty3.place(x=405, y=359)
+        # empty3.config(state="disabled")
 
         # === Create a button to transfer funds to selected customer === #
         transfer_btn = tk.Button(self.window2, text="TRANSFER", font=('Arial', 16, 'bold'), height=2, width=10,
@@ -196,14 +197,19 @@ class Bank:
             self.v.set(str(new_balance))
 
     def transfer_funds(self):
-        amt = int(self.amount_entry.get())
+        try:
+            amt = int(self.amount_entry.get())
+        except ValueError:
+            messagebox.showerror("WARNING", "Please enter valid amount.")
+            return
 
         # Get the selected customer's details
         selected_customer = self.customer_dropdown.get()
-        selected_customer_balance = 0
-
-        if self.customer == selected_customer:
-            selected_customer_balance = int(self.customer[8])
+        selected_customer_acc = 0
+        for key, val in self.customers_list.items():
+            if val == selected_customer:
+                selected_customer_acc = key
+        selected_customer_balance = int(self.customers[selected_customer_acc][8])
 
         if amt > int(self.current_customer[8]):
             messagebox.showerror("Insufficient balance", "You have insufficient balance.")
@@ -215,12 +221,13 @@ class Bank:
             self.current_customer[8] = str(int(self.current_customer[8]) - amt)
             self.v.set(self.current_customer[8])
             # Show success message
-            messagebox.showinfo("Success", "Funds transferred successfully.")
-        print("You transferred {0}, from {1} to {2}".format(amt, self.current_customer[1:3], selected_customer))
-
-
-
-
+            messagebox.showinfo("Success", "Transfer Successfull\nYou transferred €{0} to "
+                                           "{1}".format(amt, selected_customer))
+            print("Your balance €{0}, {1} balance €{2}".format(self.current_customer[8],
+                                                               selected_customer, selected_customer_balance))
+            print("You transferred {0}, from {1} to {2}".format(amt, self.current_customer[1:3], selected_customer))
+        # Update selected customer's balance
+        self.customers[selected_customer_acc][8] = selected_customer_balance
 
     # Save updated balance in the file
     def save_data(self):
