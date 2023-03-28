@@ -27,6 +27,13 @@ class Bank:
         self.customers = customers
         self.customer = customer
 
+        # === Get other customers === #
+        customers_list = []
+        for key, value in customers.items():
+            if value != self.current_customer:
+                customers_list.append(value[1:3])
+        print("Customers list: ", customers_list)
+
         label = Label(self.window2, text="WELCOME, {0}".format(self.current_customer[1]), fg="black",
                       font=("arial", 20, "bold"))
         label.grid(row=0, column=0, pady=20, padx=150)
