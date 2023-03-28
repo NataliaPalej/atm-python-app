@@ -26,6 +26,7 @@ class LoginScreen:
         self.window.geometry("600x600")
         self.window.title("ATM - Natalia Palej A00279259")
         self.window.resizable(False, False)
+        self.window.config(bg='#007FFF')
 
         # ==== SUB MENU ==== #
         submenu = Menu(self.window)
@@ -37,17 +38,17 @@ class LoginScreen:
         new_user.add_command(
             label="CREATE NEW ACCOUNT", command=new_account)
 
-        label = Label(self.window, text="A T M", fg="black", font=("arial", 30, "bold"))
-        label.grid(row=0, column=0, columnspan=2, pady=20, padx=250)
+        label = Label(self.window, text="A T M", fg="black", bg='#007FFF', font=("Verdana", 30, "bold"))
+        label.grid(row=0, column=0, columnspan=2, pady=20, padx=230)
 
-        label3 = Label(self.window, text="ACC:", fg="black", font=("arial", 20, "bold"), )
+        label3 = Label(self.window, text="ACC:", fg="black", bg='#007FFF', font=("Calibri", 20, "bold"), )
         label3.place(x=80, y=120)
         self.accNo_entry = Entry(self.window, font="Arial 20")
         self.accNo_entry.insert(END, '')
         self.accNo_entry.place(x=160, y=120, width=300, height=40)
         self.accNo_entry.focus()
 
-        label4 = Label(self.window, text="PIN:", fg="black", font=("arial", 20, "bold"))
+        label4 = Label(self.window, text="PIN:", fg="black", bg='#007FFF', font=("Calibri", 20, "bold"))
         label4.place(x=80, y=180)
         # ==== Show * to hide PIN input ==== #
         self.PIN_entry = Entry(self.window, font="Arial 20", show="*")
@@ -93,7 +94,7 @@ class LoginScreen:
         clearbtn.place(x=350, y=418)
 
         # Exit button
-        exit_btn = tk.Button(text="EXIT", width=15, font=('Arial', 16, 'bold'), height=2, bg="gray", fg="black",
+        exit_btn = tk.Button(text="EXIT", width=15, font=('Arial', 16, 'bold'), height=2, bg="#89CFF0", fg="black",
                              command=exit_app)
         exit_btn.place(x=15, y=520)
 
@@ -149,5 +150,6 @@ class LoginScreen:
                 tkinter.messagebox.showerror("Login Error", "Incorrect PIN")
         else:
             tkinter.messagebox.showerror("Login Error", "Account doesn't exist")
+
 
 LoginScreen().window.mainloop()

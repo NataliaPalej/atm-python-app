@@ -9,26 +9,27 @@ class CustomerDetails:
         self.window.geometry("600x600")
         self.window.title("ATM - Natalia Palej A00279259")
         self.window.resizable(False, False)
+        self.window.config(bg='lightyellow')
 
         # get current customer
         self.current_customer = customers[customer]
         self.customers = customers
 
-        self.label1 = Label(self.window, text="Edit Account Details", fg="black", font=("arial", 20, "bold"))
+        self.label1 = Label(self.window, text="Edit Account Details", bg='lightyellow', fg="black", font=("arial", 20, "bold"))
         self.label1.place(x=120, y=20)
 
         # accNo
         self.accNo = Label(self.window, text="Account Number: {0}".format(self.current_customer[0]), fg="black",
-                           width=30, font=("arial", 20, "bold"))
+                           width=30, font=("arial", 20, "bold"), bg='lightyellow')
         self.accNo.place(x=0, y=60)
 
-        self.name = Label(self.window, text="Name", fg="black", width=15, font=("arial", 15, "bold"))
+        self.name = Label(self.window, text="Name", fg="black", bg='lightyellow', width=15, font=("arial", 15, "bold"))
         self.name.place(x=50, y=120)
         self.name_entry = Entry(self.window, font=("arial", 15, "bold"))
         self.name_entry.insert(END, self.current_customer[1])
         self.name_entry.place(x=250, y=120)
 
-        self.surname = Label(self.window, text="Surname", fg="black", width=15, font=("arial", 15, "bold"))
+        self.surname = Label(self.window, text="Surname", fg="black", bg='lightyellow', width=15, font=("arial", 15, "bold"))
         self.surname.place(x=50, y=160)
         self.surname_entry = Entry(self.window, font=("arial", 15, "bold"))
         self.surname_entry.insert(END, self.current_customer[2])
@@ -38,11 +39,11 @@ class CustomerDetails:
         self.gender = Label(self.window, text="SEX", fg="black", width=15, font=("arial", 15, "bold"))
         # 0 unchecked, 1 checked
         self.radio = StringVar()
-        self.radio1 = Radiobutton(self.window, text="Male", variable=self.radio, value="Male",
+        self.radio1 = Radiobutton(self.window, text="Male", bg='lightyellow', variable=self.radio, value="Male",
                                   command=self.gender_choice)
-        self.radio2 = Radiobutton(self.window, text="Female", variable=self.radio, value="Female",
+        self.radio2 = Radiobutton(self.window, text="Female", bg='lightyellow', variable=self.radio, value="Female",
                                   command=self.gender_choice)
-        self.radio3 = Radiobutton(self.window, text="Undefined", variable=self.radio, value="Undefined",
+        self.radio3 = Radiobutton(self.window, text="Undefined", bg='lightyellow', variable=self.radio, value="Undefined",
                                   command=self.gender_choice)
         self.radio1.place(x=250, y=200)
         self.radio2.place(x=310, y=200)
@@ -51,35 +52,35 @@ class CustomerDetails:
         self.radio2.deselect()
         self.radio3.deselect()
 
-        self.occupation = Label(self.window, text="Occupation", fg="black", width=15,
+        self.occupation = Label(self.window, text="Occupation", bg='lightyellow', fg="black", width=15,
                                 font=("arial", 15, "bold"))
         self.occupation.place(x=50, y=240)
         self.occupation_entry = Entry(self.window, font=("arial", 15, "bold"))
         self.occupation_entry.insert(END, self.current_customer[4])
         self.occupation_entry.place(x=250, y=240)
 
-        self.address = Label(self.window, text="Address", fg="black", width=15,
+        self.address = Label(self.window, text="Address", bg='lightyellow', fg="black", width=15,
                              font=("arial", 15, "bold"))
         self.address.place(x=50, y=280)
         self.address_entry = Entry(self.window, font=("arial", 15, "bold"))
         self.address_entry.insert(END, self.current_customer[5])
         self.address_entry.place(x=250, y=280)
 
-        self.phone = Label(self.window, text="Phone no", fg="black", width=15,
+        self.phone = Label(self.window, text="Phone no", bg='lightyellow', fg="black", width=15,
                            font=("arial", 15, "bold"))
         self.phone.place(x=50, y=320)
         self.phone_entry = Entry(self.window, font=("arial", 15, "bold"))
         self.phone_entry.insert(END, self.current_customer[6])
         self.phone_entry.place(x=250, y=320)
 
-        self.email = Label(self.window, text="Email", fg="black", width=15,
+        self.email = Label(self.window, text="Email", bg='lightyellow', fg="black", width=15,
                            font=("arial", 15, "bold"))
         self.email.place(x=50, y=360)
         self.email_entry = Entry(self.window, font=("arial", 15, "bold"))
         self.email_entry.insert(END, self.current_customer[7])
         self.email_entry.place(x=250, y=360)
 
-        self.pin = Label(self.window, text="PIN", fg="black", width=15,
+        self.pin = Label(self.window, text="PIN", bg='lightyellow', fg="black", width=15,
                          font=("arial", 15, "bold"))
         self.pin.place(x=50, y=400)
         self.pin_entry = Entry(self.window, font=("arial", 15, "bold"), show="*")
