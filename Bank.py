@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from CustomerDetails import CustomerDetails
 from tkinter.ttk import Combobox
+import random
 
 
 class Bank:
@@ -21,6 +22,8 @@ class Bank:
         # Add option in submenu
         edit_details.add_command(
             label="EDIT DETAILS", command=self.edit_details)
+        edit_details.add_command(
+            label="HELP", command=self.help_details)
 
         # === Get current customer === #
         self.current_customer = customers[customer]
@@ -155,7 +158,7 @@ class Bank:
         try:
             amt = int(self.amount_entry.get())
         except ValueError:
-            # Do nothing if user did not enter any amount
+            messagebox.showerror("WARNING", "Please enter valid amount.")
             return
 
         balance = int(self.current_customer[8])
@@ -183,7 +186,7 @@ class Bank:
         try:
             amt = int(self.amount_entry.get())
         except ValueError:
-            # Do nothing if user did not enter any amount
+            messagebox.showerror("WARNING", "Please enter valid amount.")
             return
 
         balance = int(self.current_customer[8])
@@ -225,7 +228,6 @@ class Bank:
                                            "{1}".format(amt, selected_customer))
             print("Your balance €{0}, {1} balance €{2}".format(self.current_customer[8],
                                                                selected_customer, selected_customer_balance))
-            print("You transferred {0}, from {1} to {2}".format(amt, self.current_customer[1:3], selected_customer))
         # Update selected customer's balance
         self.customers[selected_customer_acc][8] = selected_customer_balance
 
@@ -244,3 +246,25 @@ class Bank:
 
     def edit_details(self):
         CustomerDetails(self.customers, self.customer)
+
+    def help_details(self):
+        # Create a new window
+        new_window = tk.Toplevel()
+        new_window.title("Help Page")
+        new_window.geometry("400x400")
+        new_window.configure(bg="#fce8d5")
+
+        message_label1 = tk.Label(new_window, text="Max deposit amount €10,000 at a time", font=("Helvetica", 16), bg="#fce8d5")
+        message_label1.pack(pady=20)
+
+        message_label2 = tk.Label(new_window, text="Unlimited fund transfer to other users", font=("Helvetica", 16),
+                                  bg="#fce8d5")
+        message_label2.pack(pady=21)
+
+        message_label3 = tk.Label(new_window, text="Max dept amount -€1,000", font=("Helvetica", 16), bg="#fce8d5")
+        message_label3.pack(pady=22)
+
+        ok_button = tk.Button(new_window, text="OK", font=("Helvetica", 14), bg="#ffdab9", command=new_window.destroy)
+        ok_button.pack(pady=20)
+
+        new_window.mainloop()
