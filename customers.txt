@@ -1,6 +1,8 @@
-1;1;Lilly;Lilusia;Female;CEO;Athlone;0894214578;LillyMayor@gmail.com;660
-987654;9876;Lola;Kennedy;Undefined;Student;Roscommon;0874211234;LolaKennedy@gmail.com;90005;;
-456132;6789;Mike;Smith;Male;Unemployed;Dublin;0861234578;MikeSmith@gmail.com;80205;;
-877900;9876;Nicholas;Murphy;Male;Software Engineer;Athlone, Ireland;08795134598;NickMurphy@gmail.com;0;;
+1;1;Lilly;Demon;Female;CEO;Athlone;0894214578;LillyMayor@gmail.com;660
+987654;9876;Lola;Kennedy;Undefined;Student;Roscommon;0874211234;LolaKennedy@gmail.com;90005;
+456132;6789;Mike;Smith;Male;Unemployed;Dublin;0861234578;MikeSmith@gmail.com;80305;
+877900;9876;Nicholas;Murphy;Male;Software Engineer;Athlone, Ireland;08795134598;NickMurphy@gmail.com;400;
 811029;1234;Ben;Ten;Male;Employed;Athlone;087451547;BenTen@gmail.com;-22;
-923835;1234;Test;NewAccount;Female;Student;Not Known;0111111111;Test@Test.Test;0;
+185838;1111;Lidia;Account;Female;Sales Assistant;Athlone;012345679;Lidia@gmail.com;0;
+609796;5555;Karen;Kate;Undefined;Sales Assistant;Athlone;0123477888;Karen@gmail.com;600;
+334601;1111;Test;Test;Male;Test;Test;1111;Test;200;

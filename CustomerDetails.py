@@ -15,7 +15,8 @@ class CustomerDetails:
         self.current_customer = customers[customer]
         self.customers = customers
 
-        self.label1 = Label(self.window, text="Edit Account Details", bg='lightyellow', fg="black", font=("arial", 20, "bold"))
+        self.label1 = Label(self.window, text="Edit Account Details", bg='lightyellow', fg="black",
+                            font=("arial", 20, "bold"))
         self.label1.place(x=120, y=20)
 
         # accNo
@@ -29,7 +30,8 @@ class CustomerDetails:
         self.name_entry.insert(END, self.current_customer[1])
         self.name_entry.place(x=250, y=120)
 
-        self.surname = Label(self.window, text="Surname", fg="black", bg='lightyellow', width=15, font=("arial", 15, "bold"))
+        self.surname = Label(self.window, text="Surname", fg="black", bg='lightyellow', width=15,
+                             font=("arial", 15, "bold"))
         self.surname.place(x=50, y=160)
         self.surname_entry = Entry(self.window, font=("arial", 15, "bold"))
         self.surname_entry.insert(END, self.current_customer[2])
@@ -43,8 +45,8 @@ class CustomerDetails:
                                   command=self.gender_choice)
         self.radio2 = Radiobutton(self.window, text="Female", bg='lightyellow', variable=self.radio, value="Female",
                                   command=self.gender_choice)
-        self.radio3 = Radiobutton(self.window, text="Undefined", bg='lightyellow', variable=self.radio, value="Undefined",
-                                  command=self.gender_choice)
+        self.radio3 = Radiobutton(self.window, text="Undefined", bg='lightyellow', variable=self.radio,
+                                  value="Undefined", command=self.gender_choice)
         self.radio1.place(x=250, y=200)
         self.radio2.place(x=310, y=200)
         self.radio3.place(x=380, y=200)
@@ -159,14 +161,13 @@ class CustomerDetails:
         self.customers[accNo] = updatedAccount
         with open('customers.txt', 'w') as save_data:
             for customer in self.customers:
-                # print(customer, self.customers[customer])
                 save_data.write(customer + ';')
                 for i in self.customers[customer]:
                     save_data.write(str(i) + ';')
                 save_data.write("\n")
 
-        tkinter.messagebox.showinfo("Account Details", "Thank you {0}\nYour Account No: {1}\n\nhas been successfully "
-                                                       "updated".format(name, accNo))
+        tkinter.messagebox.showinfo("Account Details", "Thank you {0}\nYour account has been successfully "
+                                                       "updated".format(name))
 
         self.window.destroy()
 
